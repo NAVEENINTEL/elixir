@@ -9,26 +9,22 @@ on:
       - main
 
 jobs:
-  test:
-    name: Run Tests
+  build:
+
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Use actions/setup-elixir
-        id: setup-elixir
-        uses: ./
-        with:
-          otp-version: '24.x'
-          elixir-version:  '1.12.x'
-      - name: Output runtime versions
-        run: echo "Elixir ${{steps.setup-elixir.outputs.elixir-version}} / OTP ${{steps.setup-elixir.outputs.otp-version}}"
-      - name: Run Mix project tests
-        run: |-
-          cd elixir
-          mix deps.get
-          mix test
-
+    - uses: actions/checkout@v2
+    - name: Setup elixir
+      uses: actions/setup-elixir@v1
+      with:
+        elixir-version: 1.9.4 # Define the elixir version [required]
+        otp-version: 22.2 # Define the OTP version [required]
+    - name: Install Dependencies
+      run: mix deps.get
+    - name: Run Tests
+      run: mix test
+      
 #       - name: Set up Elixir
 #         uses: actions/setup-elixir@v1
 #         with:
