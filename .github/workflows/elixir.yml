@@ -15,10 +15,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with: {node-version: '12'}
-      - run: npm ci
-      - run: npm test
+      - name: Use actions/setup-elixir
+        id: setup-elixir
+        uses: ./
+        with:
+          otp-version: '24.x'
+          elixir-version:  '1.12.x'
+      - name: Output runtime versions
+        run: echo "Elixir ${{steps.setup-elixir.outputs.elixir-version}} / OTP ${{steps.setup-elixir.outputs.otp-version}}"
+      - name: Run Mix project tests
+        run: |-
+          cd elixir
+          mix deps.get
+          mix test
 
 #       - name: Set up Elixir
 #         uses: actions/setup-elixir@v1
