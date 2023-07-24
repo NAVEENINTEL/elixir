@@ -10,8 +10,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  NA-region:
-    name: Running in NA - DC
+  DC1-region:
+    name: Running in DC-1
     runs-on: ubuntu-latest
 
     steps:
@@ -29,7 +29,7 @@ jobs:
         mix deps.get
         mix compile
         mix test || (mkdir -p screenshots/failure && touch screenshots/failure/failure.txt && exit 1)
-        mkdir -p screenshots/success && touch screenshots/success/success.txt
+        mkdir -p screenshots/success && touch screenshots/success/success-dc1.txt
     - name: Store screenshots for failure
       uses: actions/upload-artifact@v2
       with:
@@ -46,8 +46,8 @@ jobs:
 
       if: ${{ success() }}
       
-  APAC-region:
-    name: Running in APAC - DC
+  DC2-region:
+    name: Running in DC2
     runs-on: ubuntu-latest
 
     steps:
@@ -65,7 +65,43 @@ jobs:
         mix deps.get
         mix compile
         mix test || (mkdir -p screenshots/failure && touch screenshots/failure/failure.txt && exit 1)
-        mkdir -p screenshots/success && touch screenshots/success/success.txt
+        mkdir -p screenshots/success && touch screenshots/success/success-dc2.txt
+    - name: Store screenshots for failure
+      uses: actions/upload-artifact@v2
+      with:
+          name: failure-screenshots
+          path: screenshots/failure
+
+      if: ${{ failure() }}
+
+    - name: Store screenshots for success
+      uses: actions/upload-artifact@v2
+      with:
+          name: success-screenshots
+          path: screenshots/success
+
+      if: ${{ success() }}
+
+  DC3-region:
+    name: Running in DC3
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Elixir
+      uses: erlef/setup-beam@v1
+      with:
+        otp-version: '25'
+        elixir-version: '1.14.5'
+
+    - name: Build and test
+      run: |
+        mix deps.get
+        mix compile
+        mix test || (mkdir -p screenshots/failure && touch screenshots/failure/failure.txt && exit 1)
+        mkdir -p screenshots/success && touch screenshots/success/success-dc2.txt
     - name: Store screenshots for failure
       uses: actions/upload-artifact@v2
       with:
