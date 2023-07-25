@@ -6,9 +6,9 @@ Follow the steps below to set up your Elixir API tests project:
 ## Step 1: Prerequisites
 Ensure you have the following software installed on your system:
 
-## Elixir: Make sure you have Elixir installed. You can download it from the official website or use a package manager like Homebrew or apt.
+Elixir: Make sure you have Elixir installed. You can download it from the official website or use a package manager like Homebrew or apt.
 
-## Git: Install Git on your system to clone the repository and manage version control.
+Git: Install Git on your system to clone the repository and manage version control.
 
 ## Step 2: Clone the Repository
 Clone the Elixir API tests project repository from GitHub using the following command:
