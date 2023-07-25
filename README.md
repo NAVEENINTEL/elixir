@@ -61,11 +61,18 @@ Open the public key file using a text editor or print its contents in the termin
 cat ~/.ssh/id_ed25519.pub
 
 ##  Step 2: Add the Key to GitHub
+
 Log in to your GitHub account.
+
 Go to "Settings" by clicking on your profile picture in the top-right corner.
+
 In the left sidebar, click on "SSH and GPG keys."
+
 Click on "New SSH key" or "Add SSH key."
+
 Give your key a descriptive title (e.g., "My Elixir API Tests Project Key").
+
 Paste the copied public key into the "Key" field.
+
 Click on "Add SSH key" to save the key to your GitHub account.
 
