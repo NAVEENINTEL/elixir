@@ -13,8 +13,8 @@ Git: Install Git on your system to clone the repository and manage version contr
 ## Step 2: Clone the Repository
 Clone the Elixir API tests project repository from GitHub using the following command:
 
-git clone <repository_url>
-Replace <repository_url> with the actual URL of your project repository.
+git init
+git clone git@github.com:NAVEENINTEL/elixir.git
 
 ## Step 3: Install Dependencies
 Navigate to the project directory and install the required dependencies using Mix (Elixir's build tool):
